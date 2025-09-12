@@ -22,8 +22,15 @@ jobs:
       run: npm cache clean --force
       
     - name: Install dependencies
-      run: npm install --no-audit --no-fund
-      
+      run: |
+        npm install --no-audit --no-fund
+        npm list --depth=0
+        
+    - name: Verify Vite installation
+      run: |
+        npx vite --version
+        ls -la node_modules/.bin/
+        
     - name: Build
       run: npm run build
       
